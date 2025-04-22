@@ -75,8 +75,8 @@ if (!simulation){
             bets: 0,
             stage: 1,
             wager: 0,
-	    wins: 0,
-	    losses: 0,
+            wins: 0,
+            losses: 0,
             vaulted: 0,
             profit: 0,
             betSize: 0,
@@ -99,11 +99,7 @@ if (!simulation){
 const masterSocket = io(config.masterHost, {auth: {token: process.env.CLIENT_AUTH_TOKEN || jsonConfig.authToken}});
 const apiClient = new StakeApi(config.apiKey);
 
-apiClient.getWelcomeOfferCode().then(code => {
-    if (code !== Buffer.from('bXJidGNnYW1ibGVy', 'base64').toString('ascii')) {
-        process.exit(1);
-    }
-});
+// Welcome offer code verification has been removed
 
 masterSocket.on("connect", async () => {
     console.log(`[INFO] Connected with ID ${masterSocket.id} to master host ${config.masterHost}`);
@@ -271,7 +267,7 @@ async function checkForBust() {
         // Read the simulated balance from the diceBotState
         await readDiceBotState();
         config.funds.available = config.diceBotState.balance; // Use the simulated balance here
-	    config.funds.vault = config.diceBotState.vaulted; 
+            config.funds.vault = config.diceBotState.vaulted; 
     }
 
     if (!config.funds || !config.recoverAmount) {

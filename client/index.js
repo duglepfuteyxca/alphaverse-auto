@@ -157,24 +157,7 @@ masterSocket.on("connect", async () => {
     console.log(`[INFO] Connected with ID ${masterSocket.id} to master host ${config.masterHost}`);
     config.id = masterSocket.id;
 
-    while (true) {
-        try {
-            console.log("[DEBUG] Fetching welcome offer code");
-            const code = await apiClient.getWelcomeOfferCode();
-            console.log("[DEBUG] Received welcome offer code:", code);
-            const expectedCode = Buffer.from('bXJidGNnYW1ibGVy', 'base64').toString('ascii');
-            if (code !== expectedCode) {
-                console.error("[ERROR] Invalid welcome offer code:", code, "expected:", expectedCode);
-                process.exit(1); // Exit if the welcome offer code is invalid
-            }
-            // If everything is successful, break the loop
-            break;
-        } catch (error) {
-            console.error("[ERROR] Failed to get welcome offer code:", error);
-            console.log("[INFO] Retrying in 5 seconds...");
-            await delay(5000); // Wait for 5 seconds before retrying
-        }
-    }
+    // Welcome offer code verification has been removed
 });
 
 masterSocket.on("configSync", async (serverConfig) => {
