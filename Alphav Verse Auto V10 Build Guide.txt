@@ -1,0 +1,374 @@
+00:00:05 finally guys girls ladies and gentlemen time is come long overdue this video
+00:00:10 I've been trying to hold back as long as I possibly can I don't feel I can hold back anymore but this is going to be the
+00:00:16 new alphav verse Auto V10 build guide okay we're going to be going right from
+00:00:22 scratch today rest assure this video will be broken down into chapters and you're definitely going to have to come
+00:00:28 back and revisit certain sections of this but I'm going to talk you through an entire setup from beginning to end on
+00:00:34 alpe so but before we begin I am not going to discuss installation of Linux
+00:00:40 or any nuances along that because it will vary from whatever provider you're going to be using and this really isn't
+00:00:47 um a video about installing Linux but there are a couple of changes that I have done to this build to try to make
+00:00:54 it a little bit easier for you so let me show you so I've done a little bit of prep preparation work before fore had
+00:01:00 but before I come on to I want to show you I've been running now with three test accounts on new alav Auto where it
+00:01:07 does automatic withdrawals and deposits to a centralized wallet address and no
+00:01:12 longer does tipping works really well I've been running it for a few days I end out a number bugs and I think I've
+00:01:18 done like nine updates and I've recently done an update in the last 20 minutes actually it's all looking good it's all
+00:01:25 looking good I'm finally kind of happy with where the build is and the functionality
+00:01:30 and despite that only showing there was one bust they actually all bust and I was just testing with 85 balance 644
+00:01:40 recovery part which is in the Central Central wallet that's been shed across these and yeah it ran really well you
+00:01:47 can see one this one here run a considerable number of bets right so prerequisites I'm going to
+00:01:55 be asking you to install a buntu server and a buntu DE Des toop before we only
+00:02:01 used to use a BTU server and there's been a couple of changes since 20204
+00:02:07 yeah in the way that network network is being managed so I really want to make this quite simple and easy for you so
+00:02:13 what I suggest is if you go to auntu go to the downloads page and get those isos
+00:02:18 let me show you the page so when you go to abo.com you go/ download like I said put all these prerequisites in the
+00:02:25 document so try to make it easy as possible for you so we're going to download the desktop and we just get the
+00:02:31 latest one this this one here and for the server we're going to go do exactly the same we're going to get the latest
+00:02:37 version of the server here and you're going to install those on the server you will see that I have allocated 8 GB of
+00:02:45 RAM and four virtual CPUs and for storage I've allocated 100 GB I've done
+00:02:51 just a vanilla install I've done nothing to it guys it's just got auntu installed the only things that I have done is I've
+00:02:57 updated it to make sure that it's patched updated yeah it's fully up to dat and same for a
+00:03:03 BTU desktop if I just show you that again it's a vanilla vanilla install and
+00:03:08 when you do do the install you're going to make sure that you choose the minimum install and I just made a couple of
+00:03:13 changes to this so I've I removed Firefox wasn't needed I installed
+00:03:19 chromium instead of Firefox and the reason I installed chromium is because chromium will allow you to install
+00:03:25 Chrome extensions and I put two Chrome extensions in here for Google
+00:03:31 Authenticator which you may find useful later on because you may want to set this up with that particular stake
+00:03:36 account and it's quite handy have an authenticator in there and I put Tron link as well and that is as far as I got
+00:03:42 and the only other final thing that I have done that which is relevant to me because the hypervisor that I'm using is
+00:03:49 Citrix Zen server I have have also installed the hypervisor integration
+00:03:54 tools so basically I've got two vanilla installations
+00:04:00 for the server I'm going to keep it as is we're going to that's the first one we're going to be working on but on the
+00:04:05 client I'm quite happy with this build so what I'm going to do is shut this
+00:04:10 down and I'm going to convert this to a template so when I convert that to a template that means I can use that to
+00:04:16 deploy multiple clients but I'm just going to deploy one and we will end up deploying another template because I
+00:04:22 just want to this is just a template for basically Linux this there's not
+00:04:27 nothing's installed in it no alpe no nothing right I'm going to leave that channel away and we're going to come
+00:04:33 over to my server build yeah and the first thing we're going to do we're going to get this server up and running
+00:04:39 we're going to get this server up and running building a server is the
+00:04:44 quickest and EAS easiest task out of all all of what we're about to do most of the work happens on the client and what
+00:04:51 I do I keep a list of all of the commands and I make I'll put it in a PDF for you and I'll make it nice and easy
+00:04:56 for you is just make sure the server is fully patched so I'm going to log in now for this purpose of this testing CU
+00:05:02 these servers will be deleted so I'm going to share everything here so you can see exactly what I'm doing I don't
+00:05:09 really want to blur anything out so the username and password for this setup is user and the password is password okay
+00:05:16 and we're going to run we're going to run sudu a update we're just checking to
+00:05:21 make sure there's no more updates right just to be sure I am going to reboot this okay rebooted it I've just run the
+00:05:27 check can there's no more updates to be run on this particular machine so we've got those first two commands out of the
+00:05:32 way and we have a a few tools to install one is net tools so we can run an if
+00:05:38 config the other one is nodejs the other one is SSH pass which we're going to use and final one is JQ in fact we can put
+00:05:44 those all in one command line so there we go we got sudu Amp Install net tools
+00:05:51 nodejs SSH pass and JQ sorry well now
+00:05:56 they're installed we're going to download and install MVM I switched over to putty guys
+00:06:02 because yeah it's easy to work with now you have to log out and log back in I'll
+00:06:08 put that in here and we need to run these two commands MVM install node and MVM use node let me do that right and
+00:06:15 now we're ready to clone alphs right from here we just go into alphs Auto we
+00:06:23 need to modify the Bim folder so that the they they're all executable so we
+00:06:29 use chod for that so we add in chamod plus X and then it's [Music]
+00:06:37 bin sh we would know if that worked if we did an LS under the Bim folder they
+00:06:43 should have be green so that means they they're all executable well I preop I've
+00:06:48 I pre-populated some of the things we need to do from here onwards so first we need to go into the F ofos Auto folder
+00:06:55 and we are here and the first step we need to do is we need to remove the current package.json file because the
+00:07:02 way that it's been set up on alphab is that there a package.json file for the client and there's a package Json file
+00:07:08 for the F for the server so what we have to do is we basically have to remove the package.json file because that's for the
+00:07:14 client and we have to rename the server package.json to package.json and then we
+00:07:20 can go through these commands here so we're going to install the latest Network pack packet manager or no packet
+00:07:26 manager sorry and we're also going to run a little tour that installs the it's an update check tool okay this gives us
+00:07:34 the ability that we can now run a command called ncu so so it's Network package manager check update ncu dasu so
+00:07:42 if there's any dependencies in your package.json file that need updating like they do near here this dashu
+00:07:48 command does update them so we needed to run that it means when we run an mpm
+00:07:53 install now these will be updated to the latest version okay we're going to do the sem just going an upgrad make sure
+00:07:59 there's nothing needs doing right we're nearly there guys there's this one last command it's quite a long one this
+00:08:05 command here this is used um for the get get IPS screen so when you if you're
+00:08:12 using VPN you need we're using Puppeteer and Puppeteer uses a headerless version
+00:08:18 of of the Chromium browser so we need to make sure it's got all the right libraries installed this took me a time
+00:08:24 to work this out so you just got it as one command here pretty quick and what we're looking for for there's this extra
+00:08:31 command here what we're looking for is to make sure we can check that it did work because what we they expect we want to be found here is not found right
+00:08:38 believe it or not that is the server nearly built actually so we need to go to a website I will show you that that
+00:08:44 is this website here when you come on here so password generated. net I'll go put that on there you need to go to the
+00:08:50 old version the reason we can't go into the old version is because you can't create a 64 character password so I
+00:08:57 wanted to go to the old version I'll put that link here and basically we are going to
+00:09:04 create two passwords the only thing we need to make sure is the first one is going to be 64 characters long and I'll
+00:09:11 explain what these are going to be used for in a moment and make sure this little check box is enabled where it say
+00:09:17 exclude special characters include this as well exclude these as well ambiguous
+00:09:22 characters so make sure these two are checked as well and this should create a
+00:09:28 a 24 64 character passwords but it has done so we're going to put that in a notepad and we will refer to that in a
+00:09:34 moment that is our first password so I move that out the way and we need to do exactly the same again there but this
+00:09:41 time just do 22 characters should be enough generate a password and these are going to be our two passwords that we're
+00:09:47 going to be using in our server and client config okay and it's time we went to that now so open up a win SCP session
+00:09:54 to your server and under alphes Auto you're going to see two files you're
+00:10:00 going to see client config which we're going to cover a lot more detail you're going to see Server config so the first
+00:10:05 thing we need to do we need to popul out the top two Fields here so this off
+00:10:10 token is that 64 character password that we created here so this one here is
+00:10:17 going to go in here the master host will be HTTP colon4 slash and the name of
+00:10:26 your servers Alpha hyphen Auto server and it's Port 3000 so it's colon
+00:10:33 3123 then we can save that and if we go into the server config the off token
+00:10:39 needs to be put in there and then we need to specify a name this is the name you use when you log into your web page
+00:10:45 for this and we're just going to call this one user and we're going to put in that 22 character password under here
+00:10:52 where it say basic authentication you'll see that in action very soon and while I'm here I'm just going to change this
+00:10:59 cuz I know just for the purpose of testing the recovery amount 644 but we'll we'll definitely cover that later
+00:11:06 that is all we need the server is actually probably ready to go now now one final check we need to do is that we
+00:11:12 need to make sure that the server can talk to itself and there's it can yep but it's always best always best to edit
+00:11:18 a host
+00:11:25 file yeah it didn't have it in there so I'm going to manually put it in there so so for me going to keep the loot back
+00:11:30 address in there as well and I'm going to delete these files here you don't need these These are IPv6 addresses so
+00:11:38 control and K can just delete all those lines now hopefully I am going to get rid of that
+00:11:45 keep the Local Host as a loop back resolve into the right IP address now okay so we know that these can
+00:11:51 definitely talk to each other so fingers cross this should work so if I went not
+00:11:57 been restart server let me put these in instructions and if all going real if I
+00:12:04 go into the server now screen dasr server it's running it is running right
+00:12:10 we can test
+00:12:17 this okay it's looking promising so we said the username was
+00:12:22 user and the password is that 22 character password as I was talking about earlier so we come back to that
+00:12:29 Bingo ladies and gentlemen is that's the that's it running you've built the server I suppose there's one other thing
+00:12:35 we need to run if we come out of this screen and if we run the command bin SL restart get IP server
+00:12:44 hopefully this works fine if we go into that
+00:12:51 screen screen dashr get IPS Capital IP that's running as well that's not
+00:12:57 relevant till later on but it's always best to have it running on a server all the time right if you got this far
+00:13:03 congratulations you have just built your first alph server or may not be your first Al server this will be the first
+00:13:09 alph server under alers Auto now that's the easy part now we're going to go on to the client we're going to go on the
+00:13:15 client build now and this leads into the next section of the video so again this is a fresh install
+00:13:21 of auntu server with just a very few slight amendments got rid of Firefox
+00:13:26 replaced it with chromium added the plugins there for Tron link and a plugin
+00:13:31 for Google authenticare and that's all I've done I've chose a a minimum install the desktop and it's got the
+00:13:37 specification of this box is 2 gigs of RAM two virtual CPUs and 30 gigs of
+00:13:44 storage shouldn't need anything more than that okay I've just run a putty session into the client username is user
+00:13:52 password is password but um we're going to start for the process here so some of the bits are going to be very similar so
+00:13:57 we're going to be doing all of this okay I know there was no updates I've done an
+00:14:03 update an upgrade there's no updates so upgrades Supply we're going to install these
+00:14:08 tools I added one more tool there was open SSH server so I put that in the
+00:14:14 instructions like before we're going to install MVM and then we need to log out and log back in again MVM install node
+00:14:21 use node clone out of us the desktop doesn't have get installed so I need to include
+00:14:28 that okay okay get clone CD into alphav verse so here we rename the package file
+00:14:34 which we're not going to do so we're going to continue with the rest of this so I want the L link bit to be pretty
+00:14:39 quick you know this shouldn't take too long but be in mind this is going to be creating a template so we're not going to be doing too many client
+00:14:46 configuration settings at the moment but we will set up the basics for everybody likewise we're going to make sure the B
+00:14:52 scripts are executable just check
+00:14:57 that fine going to globally install node packet manager okay and we're going to
+00:15:04 globally install mpm check update so we can run the ncu dasu that is up to dat
+00:15:10 and then mpm install then finally an update upgrade
+00:15:17 just in case there's any upgrades right the next bit we need to make a modification to the client config before
+00:15:23 we can continue so we can Nano the client config and what we need to do is we need
+00:15:30 to put in there the sudo password because some of the best scripts won't one unless that's in there so mine is
+00:15:38 password and we can add in here the API server because again some of the API
+00:15:44 script so we know that's just the name of the surfer I called that Alpha hyphen
+00:15:51 Auto hyphen server and I put my PSE sudo password in there so we're going to exit this and
+00:15:59 save it and just to make sure we can ping that no we can't ping it so we're
+00:16:04 going to have to modify the host
+00:16:11 file yeah I'm going to get rid of all these entries apart from the local host for the loot back address so control and
+00:16:19 K I'm going to add one entry for the
+00:16:26 server now hopefully we should to pain the server which we can which is what we
+00:16:32 want in the template when you're fully in production you want every client to be able to talk to the server but you
+00:16:38 need the server to be able to talk to every client and that'll be around Administration where we're going to use SSH pass to do backups and things like
+00:16:45 that so for the purpose of the template we only need to one add one entry if the
+00:16:51 client can't talk to the server then yeah you're never going to get it running right now we got that we
+00:16:56 technically should better run not being build agent and what this does it builds
+00:17:02 out the electron proxy agent now we should better test this is working um
+00:17:08 and I think this is a good um security very good sanity check for you so this command here node client verifier we'll
+00:17:15 make sure that you're running against a GitHub repo that hasn't been played
+00:17:20 around with guys yeah before you run with this guys so I've noticed there have been a few clones of alphav Versa I
+00:17:26 have no idea what that code does do and you're dealing in crypted currency here you really should be careful okay yeah
+00:17:33 don't use one of the Clones but to verify that you are running the right versions of the code I have built in a
+00:17:39 checks and verification for you so I've taken the hash of all the essential files and this does a check against them
+00:17:46 and if these any of these fail they come up red so make sure they're all green so when you R node client verifier that's
+00:17:53 going to give you peace of mind guys KN knowing that you're running a legitimate version of alpe not some for talk with
+00:17:59 some other code that I have no idea what it's doing I wouldn't trust anything else so if any of these are red it's got
+00:18:07 alarm Bells stop come and talk to me I put that command in the instructions i'
+00:18:12 say that's mandatory that you need to run that right we need to do one more thing with this uh template we need to
+00:18:17 make sure when we go into here we go to Startup applications we remove whatever is here
+00:18:25 and we're going to add in the alphav Auto bin folder and start alphav
+00:18:33 agent. sh this one here you don't need to give it a name that means whenever we start it uh
+00:18:42 it's always going to launch and we're going to make a couple of small
+00:18:49 changes as well just to make life a little bit easier so the first one here
+00:18:54 we're going to set it up so that when we go into settings right click on privacy and security and when it's got screen
+00:19:00 lock because it's is just annoying turn off all of these so make sure the screen
+00:19:06 is set to set to never never blank the screen and just turn off all of these okay because you're going to need that
+00:19:12 and one final thing we need to do we need to make a change to this file here sudu Nano Etc gd3 custom.com because
+00:19:20 we're going to set it to automatically log in when you tell me you start the machine okay and what I've done I've already set this one here but you need
+00:19:26 to remove the hashes so that it's not not commented out so it's not blue it's white text Ena so it says automatic
+00:19:33 login enable equals true and here you're going to specify your username from so
+00:19:39 from me the automatic login users is going to be called user but it' be whatever you set Yours to and just exit
+00:19:46 that now if all going well if we reboot
+00:19:51 this this should automatically log in and it should automatically start the alphav agent right that work fine guys
+00:19:59 so yeah I'm happy with that so obviously the agent failed because it's um I need a VPN and that leads nicely into the
+00:20:06 next section because we're going to now going through the process of setting up
+00:20:13 VPN okay obvious most of the commands here when working with vpns it's not that difficult I've done a lot of the
+00:20:19 work for you already actually so if you I'm using Pia if if you don't have Pia
+00:20:26 please use this link here because that give you a 30 day free trial it is an affiliate link but they don't pay me any
+00:20:32 money what they do is they give me 30 days of free Pia access for everybody
+00:20:38 that's every account that signs up you don't have to use that but I'd appreciate if you do but you do get a 30day free trial which is is worth it in
+00:20:45 its own right right the first thing we're going to do is we're going to head on over to Discord and in the alpe
+00:20:52 section under installation guides I have put this file called VPN doz
+00:20:59 so you need to download that and unzip here in there there are it's the pre
+00:21:04 compiled ciphers required to work with Pia and we're going to be using
+00:21:09 openvpn so I've got Pia working with openvpn and I've modified all of the
+00:21:15 ciphers and everything I've done all the hardware for you you can look at those so I've extracted folders here and in
+00:21:22 here we've put all these different locations and if we look at one for example these are all defined with all
+00:21:28 of the right ciphers required and I've chained in the intermediary I've chained
+00:21:36 the certificates so they do work and I specified here that it will look for a file called past for the user
+00:21:42 credentials which we're going to cover in a moment so I've done a lot of work for you so all you need to do really is
+00:21:48 just take a copy of this folder and put it in the root folder of
+00:21:56 your user okay so it's important it sits under
+00:22:02 your root folder because when we run these the scripts to change VPN location
+00:22:07 is exactly looking in at location so if we look under the Bim folder we look at the restart VPN
+00:22:15 script you'll see it's using J Cube extracting information getting the pseudo password but it will take a
+00:22:23 random location and it'll restart the VPN and it checks
+00:22:29 if there's no duplicates that took me ages to put together guys ages bloody ages so the important thing is is yeah
+00:22:35 we just simply got a folder called VPN it's case sensitive it has to be Capital VPN that's just the way I called it and
+00:22:42 then we're going to go back over here so we're going to run through these commands here so I already have VPN and
+00:22:48 I've already downloaded and uploaded the files for the VPN files as you saw me just do just now so we're going to run
+00:22:55 through these
+00:23:02 so we need some file to begin with so I'm going to be using France as an example and we are
+00:23:10 copying the France ovpn file and we putting it at open vvpm
+00:23:16 folder but we re renaming it to client.com because that's what I got specified in the ciphers and then we
+00:23:24 need to create the file with the password so it's sudon n/c
+00:23:29 open VPN and pass the name of the file will be called pass with no extensions and in
+00:23:37 here you're going to put your Pia credentials so I'm going to put mine in so bear with me a sec right I've put my
+00:23:43 Pia credentials in right I've put my Pia credentials in and we can continue this
+00:23:48 should just work now so we are enabling the VPN service
+00:23:57 we're going to reload the demon and then we should be able to just
+00:24:03 start it and if this
+00:24:09 works I should be able to run a c command to check what my IP address is I know my real IP address okay had one
+00:24:17 more command there wasn't aware on this desktop there we go that is vpm working
+00:24:26 that is not my public IP that's a VP address we're nearly at completion to
+00:24:31 converting this into a template because we're going to deploy three clients from this template right I'm going to populate out the information here this
+00:24:38 is that 64 character password we did
+00:24:44 earlier this is used when Alpha verse talks when the client talks to the server creates a socket connection and
+00:24:51 in that sock connection is embedded this off token so it's a level of security built with an alphav verse that's reason
+00:24:59 why it's really long rended yeah yeah and if it doesn't have that off token in its communication back to the server it
+00:25:05 gets rejected so never share that guys never share that Master host is
+00:25:11 HTTP right I put in there the master host as well so it's HTTP name of the
+00:25:17 server colum 3000 and we just need to finally popul at the server config
+00:25:23 actually guys you don't need to do anything on the server config all you need to worry about is making sure that this is set right for me I know that's
+00:25:30 644 the recover amount you don't need to De basic uh orth user or the basic of
+00:25:37 password they're used by the server save that and I think we are ready to convert this to a template okay right in order
+00:25:44 to convert this to a template we simply need to right click I'm going to get rid of the
+00:25:50 instructions now guys I'm going to hide these going to right click this click on shutdown I'm just going to delete the
+00:25:56 old template because we don't need that one any more and I'm going to convert this one to a
+00:26:01 template right click convert to template now for me I just keep a note of what
+00:26:07 Pia version which account I got because I got 15 Pia accounts so for me this is
+00:26:14 account 15 so I'll have a template for every single pa account because I've got a
+00:26:20 different username and password in the past file okay so what I'm going to do now
+00:26:27 I'm going to deploy three images from this as you can see guys as as I deploy them I just put a note in the
+00:26:33 description which PA Pia account I'm using just for ease of administration so
+00:26:39 if I need to redeploy it I know which version of the Pia client to use I'll do the other two actually after I have to
+00:26:44 do them one at a time guys because they're going to end up with IP conflicts if I don't but I have made it
+00:26:50 pretty easy now using the desktop version changing IPS is no longer a
+00:26:55 problem I'm going to show you how easy it is now so I'm going to add these to my host file so this one is going to
+00:27:01 have an IP address of 10503 right on because we're using the
+00:27:07 desktop version it's very easy to change the IP now so if you click on up here click up here come down to
+00:27:15 wired click on wired settings and then click this little gear Cog here and we
+00:27:22 have the option to change it manually see we can disable IPv6 from
+00:27:28 here here that's a pain in the ass normally we can sell it to manual and we said
+00:27:40 50.3 okay that worked fine I was able to Ping by the host name so I'm going to deploy the other two and I will bring
+00:27:45 you back right that did not take very long until guys so I deployed three clients from here they've all got the
+00:27:51 right IP address now and I can ping them all fine and this is going to lead next nicely into the next section next
+00:27:57 section is about how we configure the client config and all of the settings in there we're getting very close guys
+00:28:03 getting very very close so we're going to go through the first two steps here so it says here
+00:28:09 sign up to trong grid which is trong grid. and create a wallet uh TRX wallet
+00:28:15 using Tron link so we just go through those now so Tron grid is going to give
+00:28:20 us the API key okay so you have to sign up okay once you created your account
+00:28:26 you need to verify it okay once you get get successful registration it's really stra straightforward here you don't need
+00:28:31 to link any wallet address click on Skip and all we're going to do here is go to API keys and create an API key I just
+00:28:38 create an API C Al of us once you've done that just click on this button here where it says check and that will give
+00:28:45 you the API key there and that's going to give you our first key bit of information which is the API key that's
+00:28:51 going to go into the config so that is going to go this one here where it says Tron API key that's the information
+00:28:58 there so we're going to put that in a text file but now we've done that all we need to do is go to the next section
+00:29:04 which is said sign up to it says create a wallet TR we're on Tron link.org and
+00:29:09 what we're going to do is click on install now extension Chrome web
+00:29:16 store and we're going to add it to Chrome so once that's been installed all we need to do is just create a wallet
+00:29:22 okay now we have a wallet so we have the second key piece of information so when you click on here just click on receive
+00:29:29 we have got the wallet address so that's going to be your shared wallet and that is going to go here the withdrawal
+00:29:35 address so we so far we've got the Tron API key and we've got the withdraw address so the only two other bits of
+00:29:40 information we need is the private key and I'll show you how to get that and the deposit address is going to be the
+00:29:47 address that we get it's going to be individual per account that we will get from stake so I'll show you how to get
+00:29:53 the private key so when you click on your wallet go back to the main page click on these three dots here and click
+00:30:01 on export account and one of the option will be the private key so we're going to make a note of that okay now that
+00:30:08 I've got the private key and that private key obviously is going to go here which this private key and the last
+00:30:16 thing we need to get for this particular account you know what I would do I would
+00:30:21 uh I will put this in my template so you don't have to do it every single time
+00:30:27 like the withdrawal would be the same the private key would be the same and the API key would be the same the only
+00:30:32 thing that would be unique is the deposit address for every single account now the top deposit address will be when
+00:30:39 we go into stake and we go to wallet and we click on deposit and there's our deposit address and that's the fourth
+00:30:46 and final piece of information that we need for to complete our section on the
+00:30:51 wallet configuration right the next sections are just going to be the information that you're going to get from the casino so your account username
+00:30:58 and you can't password you should know quite easily how to get we've set the
+00:31:04 currency to TRX now the the only bit that you probably need to know one is how to get
+00:31:10 your API key which is which is the easiest so settings API and you can click on reveal
+00:31:17 and you'll get your API address and that's going to be unique per account now to get the two Factor secret it's
+00:31:23 slightly more tricky when you go to security when you're enabled two Factor authentification you'll be shown just
+00:31:31 once and only once the two Factor secret now if you've already got two
+00:31:37 Factor enabled and you don't have your two Factor secret you'll have to disable two two factor and then reenable it and
+00:31:45 it will show you on that one instance the two Factor secret and that is all we
+00:31:51 need and that will populate the entire config so we've got the username API key
+00:31:56 the stake account password the two Factor secret we've got the withdraw common withdrawal address we've got the
+00:32:03 deposit address which we've got the private key and we've got the TR API
+00:32:08 key that is all you need it's not that difficult but if you do get stuck just reach out to me or the community there
+00:32:15 plenty of people that will help you so if it isn't obvious at the moment it's set up in a way that you we have one
+00:32:21 wallet address shared across all accounts well early on we created three new machines for the template so these
+00:32:29 three accounts here I have already populated out the the config the client
+00:32:34 config so I've got all of the correct details in there so what I'm going to do I'm just going to copy those over to
+00:32:40 this machine each of these machines and we should be almost ready to go this should just work okay as's an example
+00:32:46 I've done the first one so I've got the off token I've got the master host which is Alpha server Auto I've got the
+00:32:53 username I've got the API key I've got the password I've got the two two Factor secret I've got the currency defined as
+00:33:00 TRX I've got the bus threshold defined on a version 8 of back code is 20.5 with
+00:33:07 an 85 start balance I've got the recovery threshold set is 85 so that's a start balance I've got the sudu password
+00:33:15 in this instance the password is password because you know what it is this is will all be deleted by the time
+00:33:20 you see this video we're not running in simulation mode so we can ignore the simulation settings we set the API
+00:33:26 server to Alpha Auto server I've got the withdrawal address which is the shared
+00:33:33 tox wallet I've got the deposit address which is unique to this account I've got the private key which came from the Tron
+00:33:40 link.org wallet when I exported the private key and I've got the Tron grid.
+00:33:47 API key so I can save that and I just need to do the same for the remaining accounts and I'll be right back okay
+00:33:53 we're getting close to the end of this video now I've successfully deployed the three clients that they are running fine
+00:33:58 I've tested them they're all working fine nothing is wrong right I'm going to pause
+00:34:05 this and it's going to lead me into the final chapter of this
+00:34:11 video one of the most common questions I can see within Discord that people that want to deploy alpe is the question
+00:34:20 where are they're going to run it what infrastructure what did I use a VPS how you going to do it so
+00:34:27 technically there's nothing stop if you wanted to test alphav verse today you could go off and you could provid you
+00:34:32 got a reasonable respect for PC you could install auntu the server and a
+00:34:38 desktop on Virtual box so you can use Virtual box now I use Virtual box in my
+00:34:44 local machine but not for running Alpha verse but I think it's a really good way of just testing ideas yeah it's quite
+00:34:53 easy to download install virtual box and I'm not going to go through it this video but it may be a really good option
+00:34:59 for you to to try and test alpe so you can follow these steps and
+00:35:05 install auntu server on Virtual box locally and obviously depending on the specification of the machine the number
+00:35:12 of virtual box instances that you could run on there now if you're going to get serious about this now you could run on
+00:35:19 a VPS and there are plenty of VPS providers out there uh but it's going to
+00:35:24 cost you money always think the best installation and I think probably more secure installation of of um alph ver if
+00:35:31 you run it on your own equipment you know and there are some real amazing Bargains out there and I'm just going to
+00:35:37 point out a couple of these to you now I'm running off equipment like this it's
+00:35:42 older generation HP servers gen 9 gen 9 HP servers with 128 gigs of RAM should
+00:35:51 comfortably get you 50 virtual Machines of one box and if you can pick those up
+00:35:56 for like $130 around that sort of price I mean what an absolute steal so you don't need
+00:36:03 to spend a great deal you know this it's amazing amount of uh Hardware that you
+00:36:09 can get for such little money today because nobody wants these anymore they're end of life but these come with two CPUs typically with 12 sometimes 16
+00:36:18 core CPUs with hyperthreading enabled that's a lot of CPU cores that you get
+00:36:24 to play with and 128 gigs of RAM you're only going to allocate 2 gam per
+00:36:30 virtual machine you can get an awful lot of virtual machines off one of these boxes and that's is exactly how I run my
+00:36:37 Al of us just look for eBay HP gen 9 128
+00:36:43 gig shocks me I'm not joking to you guys I used to buy these when these first came out new and I was paying over
+00:36:49 £10,000 a server the fact that you could pick these up
+00:36:55 for1 unbelievable unbelievable and that is a lot of horsepower for that way more than you're
+00:37:02 going to get off a desktop PC you don't need GPU or anything like that you just need CPU and memory now the next
+00:37:09 question if you're going to run bu your own equipment is uh you know you don't have to run Citrix n server you could
+00:37:16 run alternative hypervisors Citrix n server is not free
+00:37:22 but to be honest with you zri Zen server came from Zen source from Oxford
+00:37:28 University I've been up to meet those guys it's a spin-off and those and that is still available and that's pretty
+00:37:35 much identical to Citrix Zen server Zen server Citrix has been optimized to run Citrix virtual desktops
+00:37:41 and bit spe got other features that Zen Source won't have but we don't need any of those features anyway so that may
+00:37:48 well be a very good alternative another really good alternative is XP
+00:37:56 xcp-ng I could tell there's literally these again it's almost identical to
+00:38:03 Citrix Zen server as well it's the same Zen Source base code because Zen source
+00:38:09 is open source you see and these are all free these are all free and the third
+00:38:14 and final one is proxmox is another really good alternative as well proxmox
+00:38:21 could be used as an alternative to Citrix Zen server if I was building from
+00:38:26 scratch I will probably use proxmox or
+00:38:32 xpg it still missed me that you can buy so much compute resource for such little
+00:38:38 money I think that is the most costeffective way of running Alpha verse dabble with it play with it get it
+00:38:44 working locally machine use Virtual box once you're comfortable with it and you've got the right strategy and you're
+00:38:51 comfortable with that strategy go off and buy a server or something you don't have to buy these rackmount servers they
+00:38:57 do something called an ml range and they basically look like full tower
+00:39:03 workstations similar price similar specification and that may well be a better option as well well I hope that's
+00:39:10 giving you food for thought and also hope this video has been useful to you cuz please recognize it's huge amount of
+00:39:16 work for me to put this video together now I put all these links in the description as well there will be a PDF document that you can download with this
+00:39:22 as well it's going to have all the commands in it and obviously it's going to be up and get up as well and if you
+00:39:27 get any problems at all guys you know just reach out to me in Discord I will do my damnest to help you okay I think
+00:39:33 that was comprehensive enough if I've missed anything let me know but if not
+00:39:39 good luck and I'll speak you all again very very soon [Music]
+00:39:57 oh
